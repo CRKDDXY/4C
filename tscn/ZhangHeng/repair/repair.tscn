@@ -1,0 +1,118 @@
+[gd_scene load_steps=14 format=3 uid="uid://dh2dqi7dmwbob"]
+
+[ext_resource type="Shader" uid="uid://c2dp24x5cwojn" path="res://tscn/shader/repair.gdshader" id="1_17ors"]
+[ext_resource type="Texture2D" uid="uid://b1k2q3vv1dyq8" path="res://resource/images/IMG_4234.PNG" id="1_wyrve"]
+[ext_resource type="Script" uid="uid://c6ec4mlw4eim2" path="res://tscn/ZhangHeng/repair/repair.gd" id="1_ycrnq"]
+[ext_resource type="Texture2D" uid="uid://bxk0krnbwo12a" path="res://resource/images/IMG_4117.JPG" id="2_p8qox"]
+[ext_resource type="Texture2D" uid="uid://h2rjq2f3714s" path="res://resource/images/black.png" id="2_xdppn"]
+[ext_resource type="Texture2D" uid="uid://clsuurtka6oad" path="res://resource/images/IMG_4114.PNG" id="4_r8n63"]
+[ext_resource type="Texture2D" uid="uid://csdvrb5qigcse" path="res://resource/images/ZH image 001.png" id="5_magwj"]
+[ext_resource type="Texture2D" uid="uid://dat2aq0xnatgq" path="res://resource/images/IMG_4115.PNG" id="5_ycrnq"]
+[ext_resource type="PackedScene" uid="uid://cur3fdflca7s3" path="res://tscn/textbox/textbox.tscn" id="9_1iuy3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0relt"]
+shader = ExtResource("1_17ors")
+shader_parameter/lod = 1.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xdppn"]
+radius = 119.36
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ycrnq"]
+radius = 132.034
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ycrnq"]
+size = Vector2(291, 99)
+
+[node name="Repair" type="Node2D" node_paths=PackedStringArray("HunTian", "chidao", "diping", "textbox", "timer1", "timer2")]
+script = ExtResource("1_ycrnq")
+HunTian = NodePath("HunTian/HunTian")
+chidao = NodePath("ChiDao")
+diping = NodePath("DiPing")
+textbox = NodePath("Textbox")
+timer1 = NodePath("ChiDao/CTimer")
+timer2 = NodePath("DiPing/DTimer")
+
+[node name="Bk black" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.611765)
+position = Vector2(772, 443.5)
+scale = Vector2(1.57637, 1.39219)
+texture = ExtResource("2_xdppn")
+
+[node name="GaoShi" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_0relt")
+position = Vector2(773.25, 443.5)
+scale = Vector2(0.917448, 0.700694)
+texture = ExtResource("2_p8qox")
+
+[node name="C" type="Label" parent="."]
+offset_left = 839.0
+offset_top = 515.0
+offset_right = 989.0
+offset_bottom = 566.042
+theme_override_font_sizes/font_size = 50
+text = "赤道圈"
+
+[node name="D" type="Label" parent="."]
+offset_left = 1229.0
+offset_top = 518.0
+offset_right = 1379.0
+offset_bottom = 569.042
+theme_override_font_sizes/font_size = 50
+text = "地平圈"
+
+[node name="ZhImage001" type="Sprite2D" parent="."]
+position = Vector2(1107, 381.5)
+scale = Vector2(1.66364, 1.67524)
+texture = ExtResource("5_magwj")
+
+[node name="HunTian" type="Area2D" parent="."]
+
+[node name="HunTian" type="Sprite2D" parent="HunTian"]
+position = Vector2(400, 419)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_wyrve")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HunTian"]
+position = Vector2(399, 265)
+shape = SubResource("CircleShape2D_xdppn")
+
+[node name="ChiDao" type="Area2D" parent="."]
+
+[node name="chidao" type="Sprite2D" parent="ChiDao"]
+position = Vector2(896, 319)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("4_r8n63")
+
+[node name="cr" type="CollisionShape2D" parent="ChiDao"]
+position = Vector2(902, 304)
+shape = SubResource("CircleShape2D_ycrnq")
+
+[node name="CTimer" type="Timer" parent="ChiDao"]
+wait_time = 0.05
+one_shot = true
+
+[node name="DiPing" type="Area2D" parent="."]
+
+[node name="diping" type="Sprite2D" parent="DiPing"]
+position = Vector2(1290, 338)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_ycrnq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DiPing"]
+position = Vector2(1287.5, 332.5)
+shape = SubResource("RectangleShape2D_ycrnq")
+
+[node name="DTimer" type="Timer" parent="DiPing"]
+wait_time = 0.05
+one_shot = true
+
+[node name="Textbox" parent="." instance=ExtResource("9_1iuy3")]
+
+[connection signal="area_entered" from="HunTian" to="." method="_on_hun_tian_area_entered"]
+[connection signal="area_exited" from="HunTian" to="." method="_on_hun_tian_area_exited"]
+[connection signal="mouse_entered" from="ChiDao" to="." method="_on_chi_dao_mouse_entered"]
+[connection signal="mouse_exited" from="ChiDao" to="." method="_on_chi_dao_mouse_exited"]
+[connection signal="timeout" from="ChiDao/CTimer" to="." method="_on_timer_timeout"]
+[connection signal="mouse_entered" from="DiPing" to="." method="_on_di_ping_mouse_entered"]
+[connection signal="mouse_exited" from="DiPing" to="." method="_on_di_ping_mouse_exited"]
+[connection signal="timeout" from="DiPing/DTimer" to="." method="_on_d_timer_timeout"]

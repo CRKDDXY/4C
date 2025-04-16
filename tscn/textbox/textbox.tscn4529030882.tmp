@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cur3fdflca7s3"]
+
+[ext_resource type="Texture2D" uid="uid://ltf1rqd2t5ko" path="res://resource/images/textbox.png" id="1_02ohj"]
+[ext_resource type="Script" uid="uid://coa3wk1m36inh" path="res://tscn/textbox/textbox.gd" id="1_rlwdk"]
+[ext_resource type="Texture2D" uid="uid://c04uqasl35d6u" path="res://resource/images/player.PNG" id="3_2lgop"]
+[ext_resource type="FontFile" uid="uid://43dj1hrov0if" path="res://resource/font/SIMFANG.TTF" id="3_xgyii"]
+[ext_resource type="Texture2D" uid="uid://cmmtoss2nxhm4" path="res://resource/images/n1.PNG" id="4_xgyii"]
+
+[node name="Textbox" type="Node2D" node_paths=PackedStringArray("label", "left", "right")]
+script = ExtResource("1_rlwdk")
+label = NodePath("Label")
+left = NodePath("left")
+right = NodePath("right")
+
+[node name="Textbox" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_02ohj")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -311.0
+offset_top = -45.0
+offset_right = 180.0
+offset_bottom = -1.0
+scale = Vector2(1.5, 1.5)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_xgyii")
+theme_override_font_sizes/font_size = 25
+text = "谁给我馒头，谁给我拳头，我记得清清楚楚 ；妩媚大主播，我要去取关你！！！"
+autowrap_mode = 2
+
+[node name="right" type="Sprite2D" parent="."]
+position = Vector2(611, -68)
+scale = Vector2(0.34, 0.34)
+texture = ExtResource("4_xgyii")
+
+[node name="left" type="Sprite2D" parent="."]
+position = Vector2(-502, -68)
+scale = Vector2(0.38, 0.38)
+texture = ExtResource("3_2lgop")

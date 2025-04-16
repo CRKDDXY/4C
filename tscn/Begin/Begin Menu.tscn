@@ -1,0 +1,115 @@
+[gd_scene load_steps=6 format=3 uid="uid://d6nn4177balg"]
+
+[ext_resource type="Script" uid="uid://ne2bodl5i1oo" path="res://tscn/Begin/begin_menu.gd" id="1_dasif"]
+[ext_resource type="Texture2D" uid="uid://bt6ek4mdatht3" path="res://resource/images/Bgein Menu.png" id="1_o4ku8"]
+[ext_resource type="Texture2D" uid="uid://h2rjq2f3714s" path="res://resource/images/black.png" id="3_2enkr"]
+[ext_resource type="Texture2D" uid="uid://7q4ml0573qum" path="res://resource/images/Library.JPG" id="4_04uug"]
+[ext_resource type="Texture2D" uid="uid://c2scyrt3ctxb8" path="res://resource/images/Light.png" id="5_vq30u"]
+
+[node name="BeginMenu" type="Node2D" node_paths=PackedStringArray("menu", "Library", "Li_ZH", "Li_SK", "Li_SYX", "play")]
+script = ExtResource("1_dasif")
+menu = NodePath("BgeinMenu")
+Library = NodePath("other")
+Li_ZH = NodePath("other/LX/TextureButton/PointLight2D")
+Li_SK = NodePath("other/MXBT/TextureButton/PointLight2D")
+Li_SYX = NodePath("other/TGKW/TextureButton/PointLight2D")
+play = NodePath("Play")
+
+[node name="Black" type="Sprite2D" parent="."]
+position = Vector2(743, 421)
+scale = Vector2(1.84521, 1.6125)
+texture = ExtResource("3_2enkr")
+
+[node name="BgeinMenu" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(749, 422)
+scale = Vector2(0.373, 0.373)
+texture = ExtResource("1_o4ku8")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 438.0
+offset_top = 538.0
+offset_right = 1063.0
+offset_bottom = 715.0
+
+[node name="other" type="Node2D" parent="."]
+
+[node name="Library" type="Sprite2D" parent="other"]
+position = Vector2(748, 398)
+scale = Vector2(0.655, 0.655)
+texture = ExtResource("4_04uug")
+
+[node name="LX" type="Label" parent="other"]
+offset_left = 1038.0
+offset_top = 235.0
+offset_right = 1057.0
+offset_bottom = 302.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "灵宪"
+autowrap_mode = 1
+
+[node name="TextureButton" type="TextureButton" parent="other/LX"]
+layout_mode = 0
+offset_left = -28.0
+offset_top = -53.0
+offset_right = 52.0
+offset_bottom = 130.0
+
+[node name="PointLight2D" type="PointLight2D" parent="other/LX/TextureButton"]
+position = Vector2(39, 85)
+scale = Vector2(0.867788, 2.19136)
+color = Color(3.31373, 5.52549, 6.07843, 0.745098)
+texture = ExtResource("5_vq30u")
+
+[node name="MXBT" type="Label" parent="other"]
+offset_left = 1241.0
+offset_top = 213.0
+offset_right = 1261.0
+offset_bottom = 305.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "梦溪笔谈"
+autowrap_mode = 1
+
+[node name="TextureButton" type="TextureButton" parent="other/MXBT"]
+layout_mode = 0
+offset_left = -28.0
+offset_top = -53.0
+offset_right = 52.0
+offset_bottom = 130.0
+
+[node name="PointLight2D" type="PointLight2D" parent="other/MXBT/TextureButton"]
+position = Vector2(39, 101)
+scale = Vector2(0.890024, 2.19136)
+color = Color(3.315, 5.525, 6.077, 1)
+texture = ExtResource("5_vq30u")
+
+[node name="TGKW" type="Label" parent="other"]
+offset_left = 1303.0
+offset_top = 633.0
+offset_right = 1322.0
+offset_bottom = 792.667
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "天工开物"
+autowrap_mode = 1
+
+[node name="TextureButton" type="TextureButton" parent="other/TGKW"]
+layout_mode = 0
+offset_left = -28.0
+offset_top = -53.0
+offset_right = 52.0
+offset_bottom = 130.0
+
+[node name="PointLight2D" type="PointLight2D" parent="other/TGKW/TextureButton"]
+position = Vector2(38, 132)
+scale = Vector2(0.867788, 2.98457)
+color = Color(3.31373, 5.52549, 6.07843, 0.862745)
+texture = ExtResource("5_vq30u")
+
+[node name="Play" type="Node2D" parent="."]
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="other/LX/TextureButton" to="." method="_zhangheng"]
+[connection signal="pressed" from="other/MXBT/TextureButton" to="." method="_shengkuo"]

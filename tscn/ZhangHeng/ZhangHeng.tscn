@@ -1,0 +1,152 @@
+[gd_scene load_steps=11 format=3 uid="uid://cuj8ei20xak87"]
+
+[ext_resource type="Script" uid="uid://cuvda5r0ml2ct" path="res://tscn/ZhangHeng/ZhangHeng.gd" id="1_unvrk"]
+[ext_resource type="Texture2D" uid="uid://ch6it2m6yoj74" path="res://resource/images/bk.jpg" id="2_2gaj4"]
+[ext_resource type="PackedScene" uid="uid://cur3fdflca7s3" path="res://tscn/textbox/textbox.tscn" id="3_42cf2"]
+[ext_resource type="Texture2D" uid="uid://dqd7nypc5pyly" path="res://resource/images/chidaoshowbk.png" id="5_4bnsf"]
+[ext_resource type="Texture2D" uid="uid://clsuurtka6oad" path="res://resource/images/IMG_4114.PNG" id="5_iujaf"]
+[ext_resource type="Texture2D" uid="uid://dat2aq0xnatgq" path="res://resource/images/IMG_4115.PNG" id="6_4ht70"]
+[ext_resource type="Texture2D" uid="uid://coq7syy7t70c4" path="res://resource/images/dipingshowbk.png" id="7_fu2m3"]
+[ext_resource type="Texture2D" uid="uid://qs87et305lse" path="res://resource/images/jiantou.png" id="7_unukq"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4bnsf"]
+load_path = "res://.godot/imported/item box.png-fca27b273bf6fba92576efc0561ec38a.ctex"
+
+[sub_resource type="GDScript" id="GDScript_unvrk"]
+script/source = "# 张衡场景的箭头浮动以及点击过后的场景切换
+
+extends Node2D
+
+@export var j1 : TextureButton
+@export var j2 : TextureButton
+
+var in_find_tscn : bool = false
+
+# 草地
+func _on_j_1_pressed() -> void:
+	if in_find_tscn == false:
+		# 这里跳转转为添加进子节点 -> 整个逻辑需要，主要是切换屏幕的滑动
+		script_text.zhangheng_tscn.add_child(preload(\"res://tscn/ZhangHeng/chaodi/chaodi.tscn\").instantiate())
+		in_find_tscn = true
+
+# 天文台后
+func _on_j_2_pressed() -> void:
+	if in_find_tscn == false:
+		script_text.zhangheng_tscn.add_child(preload(\"res://tscn/ZhangHeng/tianwentaihou/tianwentaihou.tscn\").instantiate())
+		in_find_tscn = true
+
+var af_speed : float = 12.5
+var dir : int = -1
+
+func _ready() -> void:
+	in_find_tscn = false # 是否处于场景中
+	j1.visible = !script_text.diping
+	j2.visible = !script_text.chidao
+
+func _process(delta: float) -> void:
+	j1.position.y += af_speed * dir * delta
+	j2.position.y += af_speed * dir * delta
+
+func _on_timer_timeout() -> void:
+	if dir == -1 : dir = 1
+	else : dir = -1
+"
+
+[node name="ZhangHeng" type="Node2D" node_paths=PackedStringArray("item_box", "diping", "chidao", "jiantou", "text_box")]
+script = ExtResource("1_unvrk")
+item_box = NodePath("item box")
+diping = NodePath("item box/item 1/diping")
+chidao = NodePath("item box/imte 2/chidao")
+jiantou = NodePath("jian tou")
+text_box = NodePath("Textbox")
+
+[node name="Bk" type="Sprite2D" parent="."]
+position = Vector2(749, 422)
+scale = Vector2(0.585, 0.585)
+texture = ExtResource("2_2gaj4")
+
+[node name="Textbox" parent="." instance=ExtResource("3_42cf2")]
+position = Vector2(712, 746)
+
+[node name="item box" type="Node2D" parent="."]
+
+[node name="item 1" type="Sprite2D" parent="item box"]
+position = Vector2(1279, 150)
+scale = Vector2(1.507, 1.507)
+texture = SubResource("CompressedTexture2D_4bnsf")
+
+[node name="diping" type="Node2D" parent="item box/item 1"]
+
+[node name="Chidaoshowbk" type="Sprite2D" parent="item box/item 1/diping"]
+position = Vector2(-3.52734, 0.0609131)
+scale = Vector2(0.085, 0.085)
+texture = ExtResource("7_fu2m3")
+
+[node name="i 1" type="Sprite2D" parent="item box/item 1"]
+position = Vector2(1.17651, -7.05884)
+scale = Vector2(0.059, 0.059)
+texture = ExtResource("5_iujaf")
+flip_h = true
+
+[node name="Label" type="Label" parent="item box/item 1"]
+offset_left = -24.7059
+offset_top = 27.0588
+offset_right = 23.2941
+offset_bottom = 43.3921
+text = "地平圈"
+metadata/_edit_use_anchors_ = true
+
+[node name="imte 2" type="Sprite2D" parent="item box"]
+position = Vector2(1415, 150)
+scale = Vector2(1.507, 1.507)
+texture = SubResource("CompressedTexture2D_4bnsf")
+
+[node name="chidao" type="Node2D" parent="item box/imte 2"]
+
+[node name="Dipingshowbk" type="Sprite2D" parent="item box/imte 2/chidao"]
+position = Vector2(2.15173e-05, -17.0588)
+scale = Vector2(0.053, 0.053)
+texture = ExtResource("5_4bnsf")
+
+[node name="i 2" type="Sprite2D" parent="item box/imte 2"]
+position = Vector2(0.587891, -8.2356)
+scale = Vector2(0.044, 0.044)
+texture = ExtResource("6_4ht70")
+flip_v = true
+
+[node name="Label" type="Label" parent="item box/imte 2"]
+offset_left = -23.5294
+offset_top = 27.0588
+offset_right = 24.4706
+offset_bottom = 43.3921
+text = "赤道圈"
+
+[node name="jian tou" type="Node2D" parent="." node_paths=PackedStringArray("j1", "j2")]
+visible = false
+script = SubResource("GDScript_unvrk")
+j1 = NodePath("j 1")
+j2 = NodePath("j 2")
+
+[node name="j 1" type="TextureButton" parent="jian tou"]
+offset_left = 344.0
+offset_top = 482.0
+offset_right = 986.0
+offset_bottom = 1346.0
+scale = Vector2(0.08, 0.08)
+texture_normal = ExtResource("7_unukq")
+
+[node name="j 2" type="TextureButton" parent="jian tou"]
+offset_left = 811.0
+offset_top = 298.0
+offset_right = 1453.0
+offset_bottom = 1162.0
+scale = Vector2(0.08, 0.08)
+texture_normal = ExtResource("7_unukq")
+
+[node name="Timer" type="Timer" parent="jian tou"]
+wait_time = 0.5
+autostart = true
+
+[connection signal="pressed" from="jian tou/j 1" to="jian tou" method="_on_j_1_pressed"]
+[connection signal="pressed" from="jian tou/j 2" to="jian tou" method="_on_j_2_pressed"]
+[connection signal="timeout" from="jian tou/Timer" to="jian tou" method="_on_timer_timeout"]

@@ -1,0 +1,167 @@
+[gd_scene load_steps=11 format=3 uid="uid://bhjcin8j0kwsf"]
+
+[ext_resource type="Texture2D" uid="uid://bxk0krnbwo12a" path="res://resource/images/IMG_4117.JPG" id="1_kmquq"]
+[ext_resource type="Texture2D" uid="uid://boq6aqxvvo5r7" path="res://resource/images/IMG_4118.PNG" id="2_881q8"]
+[ext_resource type="Texture2D" uid="uid://dqd7nypc5pyly" path="res://resource/images/chidaoshowbk.png" id="3_12gdl"]
+[ext_resource type="Texture2D" uid="uid://clsuurtka6oad" path="res://resource/images/IMG_4114.PNG" id="3_w0n0t"]
+[ext_resource type="Texture2D" uid="uid://dat2aq0xnatgq" path="res://resource/images/IMG_4115.PNG" id="5_12gdl"]
+[ext_resource type="Texture2D" uid="uid://coq7syy7t70c4" path="res://resource/images/dipingshowbk.png" id="5_vr4py"]
+[ext_resource type="PackedScene" uid="uid://cur3fdflca7s3" path="res://tscn/textbox/textbox.tscn" id="7_vr4py"]
+
+[sub_resource type="GDScript" id="GDScript_w0n0t"]
+script/source = "# 草地 -> 获取地平圈的相关脚本
+
+extends Node2D
+
+@export var diping : Node2D # 地平圈
+@export var chidao : Node2D # 赤道圈
+
+@export var diping_png : Sprite2D # 地平圈
+
+func _ready() -> void:
+	diping.visible = script_text.diping
+	chidao.visible = script_text.chidao
+
+#var notok : bool = true # 控制转场 -> 修改到了全局脚本中
+var noclick : bool = true # 控制点击
+
+@export var textbox : Node2D
+
+# 点击了石头范围左右的地平圈
+func _on_texture_button_pressed() -> void:
+	if noclick : 
+		noclick = false
+		var tween1 = diping_png.create_tween()
+		var tween2 = diping_png.create_tween()
+		tween1.tween_property(diping_png,\"position\",Vector2(1280.774,139.355),0.3)
+		tween2.tween_property(diping_png,\"scale\",Vector2(0.089,0.089),0.3)
+		await tween2.finished
+		diping_png.queue_free() # 原贴图去除
+		script_text.diping = true # 全局脚本修改
+		diping.visible = true # 修改性质
+		# 两者都找到了
+		if script_text.chidao&&script_text.diping:
+			textbox._init_script(\"s1 find tow\")
+		else:
+			textbox._init_script(\"s1 find one\")
+
+func _process(_delta: float) -> void:
+	if script_text.is_talk_end:
+		if Input.is_action_just_pressed(\"mouse_left\"): # 跳回上一级页面
+			script_text.zhangheng_tscn._re()
+			self.queue_free()
+			# get_tree().change_scene_to_file(\"res://tscn/ZhangHeng/ZhangHeng.tscn\")
+		script_text.is_talk_end = false
+"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pyg47"]
+load_path = "res://.godot/imported/item box.png-fca27b273bf6fba92576efc0561ec38a.ctex"
+
+[sub_resource type="GDScript" id="GDScript_nh8dj"]
+script/source = "# 草地节点地平圈的呼吸灯闪烁效果
+
+extends Sprite2D
+
+var a : bool = true
+
+func _huxideng():
+	while true:
+		var tween = self.create_tween()
+		var color = Color8(255,194,194)
+		if a:
+			color = Color8(255,255,255)
+		tween.tween_property(self,\"modulate\",color,1.5)
+		await tween.finished
+		a = !a
+
+func _ready() -> void:
+	_huxideng()
+"
+
+[node name="Chaodi" type="Node2D" node_paths=PackedStringArray("diping", "chidao", "diping_png", "textbox")]
+script = SubResource("GDScript_w0n0t")
+diping = NodePath("item box/item 1/diping")
+chidao = NodePath("item box/imte 2/chidao")
+diping_png = NodePath("diping")
+textbox = NodePath("Textbox")
+
+[node name="bk" type="Sprite2D" parent="."]
+position = Vector2(745, 457)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_kmquq")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 832.0
+offset_top = 211.0
+offset_right = 1012.0
+offset_bottom = 425.0
+
+[node name="item box" type="Node2D" parent="."]
+
+[node name="item 1" type="Sprite2D" parent="item box"]
+position = Vector2(1279, 150)
+scale = Vector2(1.508, 1.508)
+texture = SubResource("CompressedTexture2D_pyg47")
+
+[node name="diping" type="Node2D" parent="item box/item 1"]
+
+[node name="Chidaoshowbk" type="Sprite2D" parent="item box/item 1/diping"]
+position = Vector2(-3.52734, 0.0609131)
+scale = Vector2(0.085, 0.085)
+texture = ExtResource("5_vr4py")
+
+[node name="i 1" type="Sprite2D" parent="item box/item 1"]
+position = Vector2(1.17639, -7.05883)
+scale = Vector2(0.059, 0.059)
+texture = ExtResource("3_w0n0t")
+flip_h = true
+
+[node name="Label" type="Label" parent="item box/item 1"]
+offset_left = -24.7059
+offset_top = 27.0588
+offset_right = 23.2941
+offset_bottom = 43.3921
+text = "地平圈"
+
+[node name="imte 2" type="Sprite2D" parent="item box"]
+position = Vector2(1415, 150)
+scale = Vector2(1.508, 1.508)
+texture = SubResource("CompressedTexture2D_pyg47")
+
+[node name="chidao" type="Node2D" parent="item box/imte 2"]
+
+[node name="Dipingshowbk" type="Sprite2D" parent="item box/imte 2/chidao"]
+position = Vector2(0, -17.0588)
+scale = Vector2(0.053, 0.053)
+texture = ExtResource("3_12gdl")
+
+[node name="i 2" type="Sprite2D" parent="item box/imte 2"]
+position = Vector2(0.587891, -8.2356)
+scale = Vector2(0.044, 0.044)
+texture = ExtResource("5_12gdl")
+flip_v = true
+
+[node name="Label" type="Label" parent="item box/imte 2"]
+offset_left = -23.5294
+offset_top = 27.0588
+offset_right = 24.4706
+offset_bottom = 43.3921
+text = "赤道圈"
+
+[node name="diping" type="Sprite2D" parent="."]
+modulate = Color(1, 0.76, 0.76, 1)
+position = Vector2(930, 333)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_w0n0t")
+flip_h = true
+script = SubResource("GDScript_nh8dj")
+
+[node name="stone" type="Sprite2D" parent="."]
+position = Vector2(848, 370)
+scale = Vector2(0.127, 0.127)
+texture = ExtResource("2_881q8")
+
+[node name="Textbox" parent="." instance=ExtResource("7_vr4py")]
+position = Vector2(726, 879)
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
