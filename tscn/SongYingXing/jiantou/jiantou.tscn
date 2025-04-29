@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://oqlxump4iqyp"]
+
+[ext_resource type="Texture2D" uid="uid://c5p44e6ekrx32" path="res://resource/images/SYX/jiantou.png" id="1_rey62"]
+
+[sub_resource type="GDScript" id="GDScript_rey62"]
+script/source = "extends Area2D
+
+var move_speed : float = 400 * 0.8
+
+var type : String = 'up'
+
+func _process(delta: float) -> void: # 箭头移动
+	position.x += move_speed * delta
+"
+
+[node name="Jiantou" type="Area2D"]
+collision_layer = 32
+collision_mask = 0
+script = SubResource("GDScript_rey62")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("1_rey62")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-1, -36, 33, -4, 19, 8, 12, 0, 13, 30, 0, 35, -12, 31, -11, 1, -18, 8, -33, -3)

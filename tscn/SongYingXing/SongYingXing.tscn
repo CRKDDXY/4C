@@ -1,0 +1,251 @@
+[gd_scene load_steps=23 format=3 uid="uid://cy2i358basmxf"]
+
+[ext_resource type="Script" uid="uid://yt1h7grs46d1" path="res://tscn/SongYingXing/song_ying_xing.gd" id="1_qjxfx"]
+[ext_resource type="Texture2D" uid="uid://cu4ta5x1w04d6" path="res://resource/images/SYX/IMG_4531.JPG" id="2_e17i6"]
+[ext_resource type="PackedScene" uid="uid://cur3fdflca7s3" path="res://tscn/textbox/textbox.tscn" id="3_6fje6"]
+[ext_resource type="Shader" uid="uid://c2dp24x5cwojn" path="res://tscn/shader/repair.gdshader" id="3_tx67a"]
+[ext_resource type="Texture2D" uid="uid://vdqnp4wg85lw" path="res://resource/images/SYX/IMG_4523.PNG" id="4_o4kln"]
+[ext_resource type="Texture2D" uid="uid://dfqc8qf4qdo7x" path="res://resource/images/SYX/IMG_4524.PNG" id="5_ghkmo"]
+[ext_resource type="Texture2D" uid="uid://kddlhr16r4re" path="res://resource/images/SYX/IMG_4525.PNG" id="6_6h2jk"]
+[ext_resource type="Texture2D" uid="uid://bvu6iyw3qs46e" path="res://resource/images/SYX/IMG_4536.PNG" id="6_ghkmo"]
+[ext_resource type="Texture2D" uid="uid://vjtsjgci26eh" path="res://resource/images/SYX/IMG_4528.PNG" id="6_jakb5"]
+[ext_resource type="Texture2D" uid="uid://cfmjqcdyxbwn5" path="res://resource/images/SYX/IMG_4611.PNG" id="8_ni2xr"]
+[ext_resource type="Texture2D" uid="uid://c8pklu5erlbpr" path="res://resource/images/SYX/IMG_4619.PNG" id="9_jakb5"]
+[ext_resource type="Texture2D" uid="uid://do6t7hg7q5fc6" path="res://resource/images/SYX/IMG_4621.PNG" id="10_ypb5h"]
+[ext_resource type="Texture2D" uid="uid://rmtaj7fojc2" path="res://resource/images/SYX/组 1051.png" id="13_dnql1"]
+[ext_resource type="Texture2D" uid="uid://bx61gx5q563k4" path="res://resource/images/SYX/组 1047.png" id="14_bq6r3"]
+[ext_resource type="Texture2D" uid="uid://btg5408dwqwso" path="res://resource/images/SYX/IMG_4737.PNG" id="15_i8c84"]
+[ext_resource type="Texture2D" uid="uid://ggt3rvdgku5b" path="res://resource/images/SYX/键外特效2 (1).png" id="17_6o477"]
+[ext_resource type="Texture2D" uid="uid://b5uydvwcru1rv" path="res://resource/images/SYX/IMG_4738.PNG" id="18_bvs51"]
+[ext_resource type="Texture2D" uid="uid://h2rjq2f3714s" path="res://resource/images/black.png" id="19_6o477"]
+[ext_resource type="Texture2D" uid="uid://b5vwyflip4bwe" path="res://resource/images/SYX/键上 (1).png" id="19_7u0do"]
+[ext_resource type="Texture2D" uid="uid://yalip38xuica" path="res://resource/images/SYX/分组 7.png" id="20_bvs51"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x7iqy"]
+shader = ExtResource("3_tx67a")
+shader_parameter/lod = 2.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6o477"]
+size = Vector2(57, 217)
+
+[node name="SongYingXing" type="Node2D" node_paths=PackedStringArray("textbox", "b0", "b1", "b2", "b_queue_timer", "gaoshi", "operation", "ope_work", "black", "up", "down", "optimer", "hp_bar", "button_t_up", "button_t_down", "fire", "tool")]
+script = ExtResource("1_qjxfx")
+textbox = NodePath("Textbox")
+b0 = NodePath("b0/bottle")
+b1 = NodePath("b1/bottle")
+b2 = NodePath("b2/bottle")
+b_queue_timer = NodePath("b queue timer")
+gaoshi = NodePath("gaoshi")
+operation = NodePath("operation")
+ope_work = NodePath("operation/work down")
+black = NodePath("Black")
+up = NodePath("operation/up")
+down = NodePath("operation/down")
+optimer = NodePath("operation/Timer")
+hp_bar = NodePath("operation/HP bar")
+button_t_up = NodePath("operation/button_up/button_t")
+button_t_down = NodePath("operation/button_down/button_t")
+fire = NodePath("operation/work down/fire")
+tool = NodePath("operation/work down/tool")
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(746, 457)
+scale = Vector2(0.423, 0.423)
+texture = ExtResource("2_e17i6")
+
+[node name="b2" type="Node2D" parent="."]
+position = Vector2(611, 489)
+
+[node name="bottle" type="TextureButton" parent="b2"]
+offset_left = -53.0
+offset_top = -90.0
+offset_right = 51.0
+offset_bottom = 74.0
+
+[node name="Sprite2D" type="Sprite2D" parent="b2/bottle"]
+position = Vector2(47, 85)
+scale = Vector2(0.174, 0.174)
+texture = ExtResource("6_6h2jk")
+
+[node name="item" type="Sprite2D" parent="b2/bottle"]
+visible = false
+position = Vector2(78, -85)
+rotation = -2.08567
+scale = Vector2(0.195, 0.195)
+texture = ExtResource("8_ni2xr")
+
+[node name="b1" type="Node2D" parent="."]
+position = Vector2(488, 490)
+
+[node name="bottle" type="TextureButton" parent="b1"]
+offset_left = -59.0
+offset_top = -83.0
+offset_right = 52.0
+offset_bottom = 83.0
+
+[node name="Sprite2D" type="Sprite2D" parent="b1/bottle"]
+position = Vector2(52, 82)
+scale = Vector2(0.174, 0.174)
+texture = ExtResource("5_ghkmo")
+
+[node name="item" type="Sprite2D" parent="b1/bottle"]
+visible = false
+position = Vector2(118, -99)
+rotation = -2.22704
+scale = Vector2(0.178, 0.178)
+texture = ExtResource("10_ypb5h")
+flip_h = true
+
+[node name="b0" type="Node2D" parent="."]
+position = Vector2(355, 503)
+
+[node name="bottle" type="TextureButton" parent="b0"]
+offset_left = -62.0
+offset_top = -91.0
+offset_right = 59.0
+offset_bottom = 85.0
+
+[node name="Sprite2D" type="Sprite2D" parent="b0/bottle"]
+position = Vector2(65.862, 88.388)
+scale = Vector2(0.174, 0.174)
+texture = ExtResource("4_o4kln")
+
+[node name="item" type="Sprite2D" parent="b0/bottle"]
+visible = false
+position = Vector2(145, -144)
+rotation = -1.94604
+scale = Vector2(0.208, 0.208)
+texture = ExtResource("9_jakb5")
+
+[node name="workbench_fr" type="Sprite2D" parent="."]
+position = Vector2(1153, 577)
+scale = Vector2(0.209, 0.209)
+texture = ExtResource("6_ghkmo")
+
+[node name="b queue timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="gaoshi" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_x7iqy")
+position = Vector2(746, 457)
+scale = Vector2(0.423, 0.423)
+texture = ExtResource("2_e17i6")
+
+[node name="operation" type="Node2D" parent="."]
+visible = false
+
+[node name="work down" type="Sprite2D" parent="operation"]
+position = Vector2(1153, 575)
+scale = Vector2(0.208, 0.208)
+texture = ExtResource("15_i8c84")
+
+[node name="fire" type="Sprite2D" parent="operation/work down"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-72.1162, -403.847)
+scale = Vector2(0.301, 0.301)
+texture = ExtResource("18_bvs51")
+
+[node name="tool" type="Sprite2D" parent="operation/work down"]
+position = Vector2(9.473, -312.5)
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("6_jakb5")
+
+[node name="ope work" type="Sprite2D" parent="operation/work down"]
+position = Vector2(0.000488281, 9.61572)
+scale = Vector2(1.00481, 1.00481)
+texture = ExtResource("6_ghkmo")
+
+[node name="HP bar" type="Sprite2D" parent="operation"]
+position = Vector2(1335, 72)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("13_dnql1")
+
+[node name="h1" type="Sprite2D" parent="operation/HP bar"]
+position = Vector2(-181.995, 0)
+scale = Vector2(16, 16)
+texture = ExtResource("14_bq6r3")
+
+[node name="h2" type="Sprite2D" parent="operation/HP bar"]
+position = Vector2(74.9336, 0)
+scale = Vector2(16, 16)
+texture = ExtResource("14_bq6r3")
+
+[node name="h3" type="Sprite2D" parent="operation/HP bar"]
+position = Vector2(324.803, 0)
+scale = Vector2(16, 16)
+texture = ExtResource("14_bq6r3")
+
+[node name="button_up" type="Node2D" parent="operation"]
+position = Vector2(633, 722)
+
+[node name="button_t" type="Sprite2D" parent="operation/button_up"]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("17_6o477")
+
+[node name="button" type="Sprite2D" parent="operation/button_up"]
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("19_7u0do")
+
+[node name="TextureButton" type="TextureButton" parent="operation/button_up"]
+offset_left = -52.0
+offset_top = -51.0
+offset_right = 51.0
+offset_bottom = 52.0
+
+[node name="button_down" type="Node2D" parent="operation"]
+position = Vector2(874, 722)
+
+[node name="button_t" type="Sprite2D" parent="operation/button_down"]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("17_6o477")
+
+[node name="button" type="Sprite2D" parent="operation/button_down"]
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("19_7u0do")
+flip_v = true
+
+[node name="TextureButton" type="TextureButton" parent="operation/button_down"]
+offset_left = -52.0
+offset_top = -52.0
+offset_right = 53.0
+offset_bottom = 52.0
+
+[node name="Lines" type="Sprite2D" parent="operation"]
+position = Vector2(764, 536.33)
+scale = Vector2(0.177, 0.177)
+texture = ExtResource("20_bvs51")
+
+[node name="Area2D" type="Area2D" parent="operation"]
+collision_layer = 64
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="operation/Area2D"]
+position = Vector2(1140.5, 536.5)
+shape = SubResource("RectangleShape2D_6o477")
+
+[node name="up" type="Node2D" parent="operation"]
+position = Vector2(416, 502)
+
+[node name="down" type="Node2D" parent="operation"]
+position = Vector2(416, 568.55)
+
+[node name="Timer" type="Timer" parent="operation"]
+
+[node name="Textbox" parent="." instance=ExtResource("3_6fje6")]
+visible = false
+
+[node name="Black" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(742, 437)
+scale = Vector2(1.88798, 1.68906)
+texture = ExtResource("19_6o477")
+
+[connection signal="timeout" from="b queue timer" to="." method="_on_b_queue_timer_timeout"]
+[connection signal="pressed" from="operation/button_up/TextureButton" to="." method="_click_up"]
+[connection signal="pressed" from="operation/button_down/TextureButton" to="." method="_click_down"]
+[connection signal="area_entered" from="operation/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="operation/Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="timeout" from="operation/Timer" to="." method="_on_timer_timeout"]

@@ -3,43 +3,56 @@
 [ext_resource type="Texture2D" uid="uid://ltf1rqd2t5ko" path="res://resource/images/textbox.png" id="1_02ohj"]
 [ext_resource type="Script" uid="uid://coa3wk1m36inh" path="res://tscn/textbox/textbox.gd" id="1_rlwdk"]
 [ext_resource type="FontFile" uid="uid://43dj1hrov0if" path="res://resource/font/SIMFANG.TTF" id="3_xgyii"]
-[ext_resource type="Texture2D" uid="uid://6hytm1wn5ih" path="res://resource/images/ShengKuo.PNG" id="4_a7djj"]
-[ext_resource type="Texture2D" uid="uid://cey0o4dnf7gke" path="res://resource/images/S2 me.PNG" id="5_50sea"]
-[ext_resource type="Texture2D" uid="uid://c4scyj4x04ums" path="res://resource/images/chevrons _ right.png" id="6_a7djj"]
+[ext_resource type="Texture2D" uid="uid://de57iqqo566a" path="res://resource/images/SYX/IMG_4478.PNG" id="4_a7djj"]
+[ext_resource type="Texture2D" uid="uid://crc03nviru3bx" path="res://resource/images/SYX/IMG_4480.PNG" id="5_50sea"]
+[ext_resource type="Texture2D" uid="uid://bguo2wi014yeo" path="res://resource/images/双右.png" id="6_a7djj"]
 
-[node name="Textbox" type="Node2D" node_paths=PackedStringArray("label", "left", "right", "talk_end")]
+[node name="Textbox" type="Node2D" node_paths=PackedStringArray("label", "left", "right", "talk_end", "talker_name")]
 script = ExtResource("1_rlwdk")
 label = NodePath("text")
 left = NodePath("left")
 right = NodePath("right")
 talk_end = NodePath("talk end")
+talker_name = NodePath("name")
 
 [node name="Textbox" type="Sprite2D" parent="."]
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_02ohj")
 
+[node name="name" type="Label" parent="."]
+offset_left = -409.0
+offset_top = -39.0
+offset_right = -333.0
+offset_bottom = -15.5208
+scale = Vector2(1.5, 1.5)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 23
+text = "名字"
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="text" type="Label" parent="."]
-offset_left = -311.0
-offset_top = -45.0
-offset_right = 180.0
-offset_bottom = 9.04167
+offset_left = -295.0
+offset_top = -39.0
+offset_right = 181.0
+offset_bottom = 15.0
 scale = Vector2(1.5, 1.5)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_xgyii")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 23
 text = "文本框"
 
 [node name="right" type="Sprite2D" parent="."]
 position = Vector2(624, -68)
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.245, 0.245)
 texture = ExtResource("4_a7djj")
 
 [node name="left" type="Sprite2D" parent="."]
-position = Vector2(-484, -53)
-scale = Vector2(0.35, 0.35)
+position = Vector2(-498, -70)
+scale = Vector2(0.291, 0.291)
 texture = ExtResource("5_50sea")
 
 [node name="talk end" type="Sprite2D" parent="."]
 position = Vector2(443, 29)
-scale = Vector2(2.5, 2.5)
+scale = Vector2(1.591, 1.591)
 texture = ExtResource("6_a7djj")

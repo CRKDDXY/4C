@@ -20,6 +20,15 @@ func _ready() -> void:
 	visible = false
 	label.set_autowrap_mode(TextServer.AUTOWRAP_ARBITRARY) # 设置自动换行
 
+@export var talker_name : Label
+
+# 修改说话者名称
+func _change_talker_name(talker : String):
+	if talker != "":
+		talker_name.text = talker + ':'
+	else:
+		talker_name.text = ""
+
 # 修改文本
 func _change_text(textcontent : String):
 	# 终止之前的补间动画
@@ -49,6 +58,10 @@ func _change_lihui(dirc : Array ,lihuiname : Array):
 				left.texture = load("res://resource/images/S2 me.PNG")
 				left.scale = Vector2(0.35,0.35)
 				left.position = Vector2(-484,-53)
+			"宋应星-我":
+				left.texture = load("res://resource/images/SYX/IMG_4480.PNG")
+				left.scale = Vector2(0.291,0.291)
+				left.position = Vector2(-498.0-20,-70.0)
 	if lihuiname[1] != "" :
 		match lihuiname[1]:
 			"张衡":
@@ -59,6 +72,10 @@ func _change_lihui(dirc : Array ,lihuiname : Array):
 				right.texture = load("res://resource/images/ShengKuo.PNG")
 				right.scale = Vector2(0.3,0.3)
 				right.position = Vector2(624,-68)
+			"宋应星":
+				right.texture = load("res://resource/images/SYX/IMG_4478.PNG")
+				right.scale = Vector2(0.245,0.245)
+				right.position = Vector2(624.0,-68.0)
 
 # 初始化剧本
 func _init_script(script_name : String):
@@ -74,6 +91,7 @@ func _init_script(script_name : String):
 func _choose_script():
 	_change_lihui(script_text.stext[sname][sindex][0],script_text.stext[sname][sindex][1]) # 立绘修改
 	_change_text(script_text.stext[sname][sindex][2]) # 文本修改
+	_change_talker_name(script_text.stext[sname][sindex][3])
 
 # 判定点击 -> 文本未结束/文本结束
 func _process(_delta: float) -> void:

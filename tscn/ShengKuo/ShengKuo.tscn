@@ -243,7 +243,6 @@ scale = Vector2(0.15, 0.15)
 
 [node name="Sprite2D" type="Sprite2D" parent="fire/S2GHead"]
 position = Vector2(-113.333, -146.667)
-scale = Vector2(1, 1)
 texture = ExtResource("11_kehj5")
 
 [node name="Area2D" type="Area2D" parent="fire/S2GHead"]

@@ -78,12 +78,14 @@ func _process(_delta: float) -> void:
 					click = false
 					textbox.visible = false
 					end_fire_timer.start()
+###############################################################################################################################
 			if script_text.is_talk_end and script_text.this_talk_name == "s2 fire mid":
 				if click1:
 					click1 = false
 					textbox.visible = false
 					la.visible = false
 					end_fire_timer.start()
+###############################################################################################################################
 			if script_text.is_talk_end and script_text.this_talk_name == "s2 fire end": #到这里就结束了，应该进行返回图书馆操作了
 				if click2:
 					click2 = false
@@ -130,7 +132,8 @@ func _fire_timer_out():
 	await tween2.finished
 	tween2.kill()
 	if fire_type == false:
-		textbox._init_script("s2 fire mid") # 对话
+		# textbox._init_script("s2 fire mid") # 对话
+		end_fire_timer.start()
 		fire_type = true
 	else:
 		textbox._init_script("s2 fire end") # 对话
